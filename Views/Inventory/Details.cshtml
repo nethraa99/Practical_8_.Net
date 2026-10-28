@@ -1,0 +1,32 @@
+﻿@model Practical_8_.Net.Models.InventoryItem
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+<h2>Product Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Product ID</dt>
+        <dd>#@Model.ProductId</dd>
+
+        <dt>Product Name</dt>
+        <dd>@Model.ProductName</dd>
+
+        <dt>Quantity In Stock</dt>
+        <dd>@Model.Quantity units</dd>
+
+        <dt>Unit Price</dt>
+        <dd>@Model.Price.ToString("C")</dd>
+
+        <dt>Total Inventory Value</dt>
+        <dd><strong>@((Model.Quantity * Model.Price).ToString("C"))</strong></dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+</p>

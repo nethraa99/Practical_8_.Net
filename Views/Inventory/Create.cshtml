@@ -1,0 +1,35 @@
+﻿@model Practical_8_.Net.Models.InventoryItem
+
+@{
+    ViewBag.Title = "Add Product";
+}
+
+<h2>Add New Product</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { style = "color: red;" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductName)
+        @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductName, "", new { style = "color: red;" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Quantity)
+        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", type = "number", min = "0" })
+        @Html.ValidationMessageFor(m => m.Quantity, "", new { style = "color: red;" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "0.01", min = "0.01" })
+        @Html.ValidationMessageFor(m => m.Price, "", new { style = "color: red;" })
+    </div>
+
+    <br />
+    <input type="submit" value="Save to Database" class="btn btn-success" />
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Practical_8_.Net.Models.InventoryItem>
+
+@{
+    ViewBag.Title = "Inventory Management";
+}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <div>
+        <h2>Inventory Management (ADO.NET)</h2>
+        <span style="color: #64748b; font-size: 14px;">Connected directly to SQL Server database</span>
+    </div>
+    @Html.ActionLink("+ Add Product", "Create", null, new { @class = "btn btn-primary" })
+</div>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total Value</th>
+            <th style="text-align: right;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>#@item.ProductId</td>
+                <td><strong>@item.ProductName</strong></td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+                <td style="color: #16a34a; font-weight: 600;">@((item.Quantity * item.Price).ToString("C"))</td>
+                <td style="text-align: right;" class="action-links">
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { style = "color: #ef4444;" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
